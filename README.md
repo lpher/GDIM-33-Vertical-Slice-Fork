@@ -2,13 +2,13 @@
 ## Milestone 1 Devlog
 [Vertical Slice Repository with my commits.](https://github.com/lpher/GDIM-33-Vertical-Slice)
 
-1. In my game, I have a Player Controller Graph which contains a node chain that calculates camera-relative movement direction for the player and stores it each frame. The node chain does this by getting the cameraís forward and right vectors from a transform cameraTransform variable. From those vectors, the graph then extracts the X and Z-values from each of them and creates a new vector 3 where Y equals zero. This removes vertical tilt from the camera direction and keeps movement grounded. After that the graph gets the playerís input through a vector 2 moveInput variable. From the variable, it extracts the X and Y-values to scale forward and right direction for W/S and A/D inputs respectively through multiplication with the flattened vectors the graph made before. The results are then added together to form a single movement vector, which is then normalized to prevent diagonal movement from moving faster. On a fixed update node, the normalized result is saved into a vector 3 moveDirection variable, and then ran through an if node that checks whether or not its magnitude is greater than 0.1. If false, do nothing, but if true, set the vector 3 lastMovementDirection variable to the value of the moveDirection variable. Additionally, through this, the graph creates movement relative to the camera and maintains direction even when inputs stop.
+1. In my game, I have a Player Controller Graph which contains a node chain that calculates camera-relative movement direction for the player and stores it each frame. The node chain does this by getting the camera‚Äôs forward and right vectors from a transform cameraTransform variable. From those vectors, the graph then extracts the X and Z-values from each of them and creates a new vector 3 where Y equals zero. This removes vertical tilt from the camera direction and keeps movement grounded. After that the graph gets the player‚Äôs input through a vector 2 moveInput variable. From the variable, it extracts the X and Y-values to scale forward and right direction for W/S and A/D inputs respectively through multiplication with the flattened vectors the graph made before. The results are then added together to form a single movement vector, which is then normalized to prevent diagonal movement from moving faster. On a fixed update node, the normalized result is saved into a vector 3 moveDirection variable, and then ran through an if node that checks whether or not its magnitude is greater than 0.1. If false, do nothing, but if true, set the vector 3 lastMovementDirection variable to the value of the moveDirection variable. Additionally, through this, the graph creates movement relative to the camera and maintains direction even when inputs stop.
 
 2. [Updated break-down.](https://docs.google.com/presentation/d/1fOkdzATHGMJyJxChTzLwguQFGH2ylNccHMmCnEcj208/edit?usp=sharing)
    
-   In my break-down, I added the Player State Machine logic in the Player bubble. Under the State Machine, I added the individual states I currently have implemented, that being the Playerís idle, movement, and rolling states. After that, I drew additional arrows and added comments to show which systems the State Machine interacted with and how it interacted with those systems. Lastly, I highlighted my changes in yellow to have my changes be more identifiable.
+   In my break-down, I added the Player State Machine logic in the Player bubble. Under the State Machine, I added the individual states I currently have implemented, that being the Player‚Äôs idle, movement, and rolling states. After that, I drew additional arrows and added comments to show which systems the State Machine interacted with and how it interacted with those systems. Lastly, I highlighted my changes in yellow to have my changes be more identifiable.
 
-   The Player State Machine I implemented for milestone one controls the transitions between the idling, moving, and rolling states. It allows only one of these major player actions to be active at a single time. In the Move State, the Physics System handles the Playerís normal movement. But when transitioning to the Roll State, normal movement is paused and only the rolling movement runs until the roll itself is actually finished. This State Machine interacts with the Physics System for movement, as when it transitions into the Move State, the state runs a node chain using the Physics System to make the Player move. The State Machine interacts with the Animation System by using the animations for idling, moving, and rolling and triggering them when receiving certain inputs to transition between them.
+   The Player State Machine I implemented for milestone one controls the transitions between the idling, moving, and rolling states. It allows only one of these major player actions to be active at a single time. In the Move State, the Physics System handles the Player‚Äôs normal movement. But when transitioning to the Roll State, normal movement is paused and only the rolling movement runs until the roll itself is actually finished. This State Machine interacts with the Physics System for movement, as when it transitions into the Move State, the state runs a node chain using the Physics System to make the Player move. The State Machine interacts with the Animation System by using the animations for idling, moving, and rolling and triggering them when receiving certain inputs to transition between them.
 
 ## Milestone 2 Devlog
 1. Feature Task Break-down
@@ -43,25 +43,25 @@
 
             3-5 Substeps to Take Towards Completion
 
-               1. Create an empty game object and add a collider to it to act as the attack hitbox, setting the collider to ìis trigger.î Disable this game object
+               1. Create an empty game object and add a collider to it to act as the attack hitbox, setting the collider to ‚Äúis trigger.‚Äù Disable this game object
                2. Set up some trigger to enable and disable the game object to create the attack window
                3. Learn or download particle system effects, editing them as needed, and making them prefabs
-               4. In an ìOn Trigger Enterî method, instantiate these prefabs. Additionally, create a set a new boolean variable to true to check if you landed a Black Flash
+               4. In an ‚ÄúOn Trigger Enter‚Äù method, instantiate these prefabs. Additionally, create a set a new boolean variable to true to check if you landed a Black Flash
                5. Playtest to check if the hitboxes are working and activate the visual effects. From there you can add damage values, have the new boolean variable being set to true be the transition out of the state, and have the other states check if the player has landed a Black Flash and change their behavior accordingly
 
 2. Task Break-down Aid
 
-This task break-down helped me in building this feature by allowing me to first brainstorm and visualize the steps I needed to take. Breaking this feature down into actionable steps also helped me think about what systems it would use and interact with. The task break-down essentially gave me a plan or instruction manual to follow so that I could tackle architecting with some level of direction and preparedness. Something I could do that I did not initially to improve my break-downs and level of preparedness is to research beforehand on how to specifically do things Iím not entirely sure of like watching youtube videos. I was researching how I would architect some systems as I was already developing, which may have made the development process take longer.
+This task break-down helped me in building this feature by allowing me to first brainstorm and visualize the steps I needed to take. Breaking this feature down into actionable steps also helped me think about what systems it would use and interact with. The task break-down essentially gave me a plan or instruction manual to follow so that I could tackle architecting with some level of direction and preparedness. Something I could do that I did not initially to improve my break-downs and level of preparedness is to research beforehand on how to specifically do things I‚Äôm not entirely sure of like watching youtube videos. I was researching how I would architect some systems as I was already developing, which may have made the development process take longer.
 
 3. Bridging Visual Scripting and C# Coding
 
-I bridged visual scripting and C# coding through having the graph controlling when the Black Flash lands call a public C# method named ìPlayBlackFlashImpact()î from a ìBlackFlashFeedback.csî script. Doing this separates the logic between landing the Black Flash and playing the visual effects of the Black Flash making my graph less cluttered and more simplified.
+I bridged visual scripting and C# coding through having the graph controlling when the Black Flash lands call a public C# method named ‚ÄúPlayBlackFlashImpact()‚Äù from a ‚ÄúBlackFlashFeedback.cs‚Äù script. Doing this separates the logic between landing the Black Flash and playing the visual effects of the Black Flash making my graph less cluttered and more simplified.
 
-[InsertImageHere]
+<img width="1918" height="1198" alt="Screenshot 2026-05-31 222504" src="https://github.com/user-attachments/assets/f385e4e9-a26e-4441-b71a-566b87dba459" />
 
 4. Unity System Used
 
-In this project I used Unityís NavMesh system on the Enemy so that it can intelligently move and track the player.
+In this project I used Unity‚Äôs NavMesh system on the Enemy so that it can intelligently move and track the player.
 
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
