@@ -23,14 +23,31 @@
 
             3-5 Substeps to Take Towards Completion
 
+               1. Create new action on player input system and assign a key to activate it
+               2. Create boolean variable and have pressing the assigned key set it to true
+               3. Create new state and transitions to it
+               4. In these transitions, check if boolean variable is true, then transition to new state
+               5. Set up a debug log when entering the new state, then playtest and check the console to ensure the state was successfully transitioned too
+
+         2. Adding and assigning an animation that can be transitioned too and from any existing animation
+
+            3-5 Substeps to Take Towards Completion
+
                1. Download animation
                2. Place new animation in animator controller and apply transitions in and out of the state
                3. Create new animator variable/parameter in animator window and assign it to the transitions
                4. Trigger the animation in the state machine when entering the new state
                5. Playtest to see if the animation plays when entering the state
 
-         2. Adding and assigning an animation that can be transitioned too and from any existing animation
          3. Setting up the hitbox window, visual and camera effects, damage values, and linking it to an enhanced state for the player
+
+            3-5 Substeps to Take Towards Completion
+
+               1. Create an empty game object and add a collider to it to act as the attack hitbox, setting the collider to “is trigger.” Disable this game object
+               2. Set up some trigger to enable and disable the game object to create the attack window
+               3. Learn or download particle system effects, editing them as needed, and making them prefabs
+               4. In an “On Trigger Enter” method, instantiate these prefabs. Additionally, create a set a new boolean variable to true to check if you landed a Black Flash
+               5. Playtest to check if the hitboxes are working and activate the visual effects. From there you can add damage values, have the new boolean variable being set to true be the transition out of the state, and have the other states check if the player has landed a Black Flash and change their behavior accordingly
 
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
