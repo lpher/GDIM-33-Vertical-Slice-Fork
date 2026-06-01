@@ -49,6 +49,20 @@
                4. In an “On Trigger Enter” method, instantiate these prefabs. Additionally, create a set a new boolean variable to true to check if you landed a Black Flash
                5. Playtest to check if the hitboxes are working and activate the visual effects. From there you can add damage values, have the new boolean variable being set to true be the transition out of the state, and have the other states check if the player has landed a Black Flash and change their behavior accordingly
 
+2. Task Break-down Aid
+
+This task break-down helped me in building this feature by allowing me to first brainstorm and visualize the steps I needed to take. Breaking this feature down into actionable steps also helped me think about what systems it would use and interact with. The task break-down essentially gave me a plan or instruction manual to follow so that I could tackle architecting with some level of direction and preparedness. Something I could do that I did not initially to improve my break-downs and level of preparedness is to research beforehand on how to specifically do things I’m not entirely sure of like watching youtube videos. I was researching how I would architect some systems as I was already developing, which may have made the development process take longer.
+
+3. Bridging Visual Scripting and C# Coding
+
+I bridged visual scripting and C# coding through having the graph controlling when the Black Flash lands call a public C# method named “PlayBlackFlashImpact()” from a “BlackFlashFeedback.cs” script. Doing this separates the logic between landing the Black Flash and playing the visual effects of the Black Flash making my graph less cluttered and more simplified.
+
+[InsertImageHere]
+
+4. Unity System Used
+
+In this project I used Unity’s NavMesh system on the Enemy so that it can intelligently move and track the player.
+
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
 ## Milestone 4 Devlog
