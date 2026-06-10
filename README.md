@@ -65,6 +65,7 @@ In this project I used Unity’s NavMesh system on the Enemy so that it can inte
 
 ## Milestone 3 Devlog
 <img width="1917" height="972" alt="Screenshot 2026-06-10 051716" src="https://github.com/user-attachments/assets/0f58026f-16e6-4b6c-a7f1-75dc8e377b75" />
+
 1. My ShaderGraph blends a dry material into a wet one and adds moving water ripple normals and puddle masking to simulate water accumulation on a surface.
    
    For the Fragment Base Color input, I use a UV node and connect its output into a Tiling And Offset node’s UV input. For the Tiling input, I created a Vector2 property named TextureTiling so that I could edit the texture’s tiling dimensions. From there I connected the output of the Tiling And Offset node into a Sample Texture 2D node’s UV input. For the Texture input, I created a Texture2D property named BaseTexture so that I apply different textures for different objects. From there, I multiplied the RGBA output by a color property I named WetColor, then connected the output result to the B input of a Lerp node. For the A input of the Lerp node, I connected the RGBA output from the Sample Texture 2D node and connected a Float property named Wetness to the T input. I then connected the output of the Lerp node into the Fragment node’s Base Color input. This was done to emulate the darkening of color when a surface gets wet. I used this on the walls, floors, player, and enemies as rain was constantly being poured down on them.
